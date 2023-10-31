@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://i6xk82vycyj2"]
+
+[ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="1_26ewg"]
+[ext_resource type="Theme" uid="uid://b4p6hghiq2a4y" path="res://GUI_settings/MarginContainer.tres" id="2_0h0p4"]
+[ext_resource type="Texture2D" uid="uid://j0plblx7by55" path="res://PNG/шит.png" id="2_780ws"]
+
+[node name="Inventory" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(1840, 1000)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_26ewg")
+patch_margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+clip_contents = true
+custom_minimum_size = Vector2(1800, 960)
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1820.0
+offset_bottom = 980.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="лево" type="PanelContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(596, 960)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/HBoxContainer/лево"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer"]
+custom_minimum_size = Vector2(592, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VSplitContainer" type="VSplitContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+split_offset = 9
+dragger_visibility = 1
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+split_offset = 9
+dragger_visibility = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer"]
+self_modulate = Color(0.890196, 1, 0.188235, 1)
+custom_minimum_size = Vector2(580, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0h0p4")
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_780ws")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Item"
+
+[node name="центр" type="PanelContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(596, 960)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/HBoxContainer/центр"]
+layout_mode = 2
+
+[node name="верх" type="MarginContainer" parent="NinePatchRect/HBoxContainer/центр/VBoxContainer"]
+layout_mode = 2
+
+[node name="центр" type="MarginContainer" parent="NinePatchRect/HBoxContainer/центр/VBoxContainer"]
+layout_mode = 2
+
+[node name="низ" type="MarginContainer" parent="NinePatchRect/HBoxContainer/центр/VBoxContainer"]
+layout_mode = 2
+
+[node name="право" type="PanelContainer" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(596, 960)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

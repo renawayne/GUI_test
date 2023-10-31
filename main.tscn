@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bccgjjctawbey"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3l0rn"]
+[ext_resource type="PackedScene" uid="uid://detw6ua44swu0" path="res://gui.tscn" id="3_fic5w"]
+[ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="3_uc6e5"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_3l0rn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.54902, 0.427451, 0.54902, 1)
+position = Vector2(-195, -50)
+scale = Vector2(1.92903, 1.92903)
+texture = ExtResource("3_uc6e5")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 363.0
+offset_top = 333.0
+offset_right = 1530.0
+offset_bottom = 674.0
+text = "Main Scene"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GUI" parent="." instance=ExtResource("3_fic5w")]
