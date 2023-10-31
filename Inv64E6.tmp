@@ -1,52 +1,46 @@
 [gd_scene load_steps=10 format=3 uid="uid://i6xk82vycyj2"]
 
-[ext_resource type="Texture2D" uid="uid://dasditftdbgk1" path="res://PNG/капли.png" id="1_07nfo"]
 [ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="1_26ewg"]
 [ext_resource type="Theme" uid="uid://b4p6hghiq2a4y" path="res://GUI_settings/MarginContainer.tres" id="2_0h0p4"]
 [ext_resource type="Texture2D" uid="uid://j0plblx7by55" path="res://PNG/шит.png" id="2_780ws"]
+[ext_resource type="Texture2D" uid="uid://7djh2p88hipm" path="res://PNG/серый.png" id="4_15kfm"]
 [ext_resource type="Texture2D" uid="uid://but4hcxsce4hu" path="res://PNG/рамка.png" id="5_yetet"]
 [ext_resource type="Texture2D" uid="uid://sp8x20dxe7li" path="res://PNG/снежинка.png" id="6_jy12o"]
-[ext_resource type="PackedScene" uid="uid://bsi6ntyg1rgbx" path="res://margin_container_2.tscn" id="6_ym1wi"]
 
 [sub_resource type="GDScript" id="GDScript_05yka"]
 script/source = "extends Control
-@export var ico: Texture2D
+var ico: Texture2D = res://PNG/капли.png
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$\"NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList\".add_item(\"string \\n 123\", ico)
-	
-	
+	$\"NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList\".add_item(\"string\", ico)
 	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	var y = $\"NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer\".focus_entered
+	
 #	var x = $\"NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList\".get_selected_items()
-#	print(\"focus: \",y)
+#	print(x, y)
 	pass
 
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
-	print(\"index: \", index, \"\\nat_position: \", at_position, \"\\nmouse_button_index: \", mouse_button_index, \"\\n===========\")
-	var x = $\"NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList\".get_selected_items()
-	print(x)
+	print(\"index: \", index, \"\\nat_position: \", at_position, \"\\nmouse_button_index: \", mouse_button_index)
 	pass # Replace with function body.
 "
 
-[sub_resource type="GDScript" id="GDScript_3g2l0"]
-script/source = "extends ItemList
+[sub_resource type="Theme" id="Theme_vw2ek"]
+MarginContainer/constants/margin_bottom = 11
+MarginContainer/constants/margin_left = 11
+MarginContainer/constants/margin_right = 55
+MarginContainer/constants/margin_top = 11
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
+[sub_resource type="Theme" id="Theme_6vhot"]
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
 
 [node name="Inventory" type="Control"]
 clip_contents = true
@@ -58,7 +52,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_05yka")
-ico = ExtResource("1_07nfo")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(1840, 1000)
@@ -95,6 +88,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect/HBoxContainer/лево"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
@@ -104,23 +98,67 @@ custom_minimum_size = Vector2(592, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="MarginContainer1" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer" instance=ExtResource("6_ym1wi")]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_0h0p4")
+
+[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer"]
+self_modulate = Color(0.890196, 1, 0.188235, 1)
+custom_minimum_size = Vector2(580, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="MarginContainer2" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer" instance=ExtResource("6_ym1wi")]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_0h0p4")
 
-[node name="MarginContainer3" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer" instance=ExtResource("6_ym1wi")]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
+texture = ExtResource("2_780ws")
+expand_mode = 2
 
-[node name="MarginContainer4" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer" instance=ExtResource("6_ym1wi")]
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_0h0p4")
 
-[node name="MarginContainer5" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer" instance=ExtResource("6_ym1wi")]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = SubResource("Theme_vw2ek")
+
+[node name="Label" type="Label" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(10, 160)
+layout_mode = 2
+theme = SubResource("Theme_6vhot")
+
+[node name="ItemList" type="ItemList" parent="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+select_mode = 1
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+text_overrun_behavior = 0
+item_count = 3
+item_0/text = "str"
+item_0/icon = ExtResource("4_15kfm")
+item_1/text = "agil"
+item_1/icon = ExtResource("4_15kfm")
+item_2/text = "heal"
+item_2/icon = ExtResource("4_15kfm")
 
 [node name="Container" type="PanelContainer" parent="NinePatchRect/HBoxContainer/лево"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_0h0p4")
 
@@ -129,18 +167,16 @@ layout_mode = 2
 
 [node name="ItemList" type="ItemList" parent="NinePatchRect/HBoxContainer/лево/Container/MarginContainer"]
 layout_mode = 2
-tooltip_text = "12312313123213123123213"
+select_mode = 1
 max_text_lines = 10
-item_count = 4
+item_count = 3
 fixed_icon_size = Vector2i(128, 128)
-item_0/text = "Это \\n название первого айтема. Как тут все устроенно я хз вообще! Вот и думаю что делать!"
+item_0/text = "Это название первого айтема. Как тут все устроенно я хз вообще! Вот и думаю что делать!"
 item_0/icon = ExtResource("2_780ws")
 item_1/text = "Это название первого айтема. Как тут все устроенно я хз вообще! Вот и думаю что делать!"
 item_1/icon = ExtResource("5_yetet")
 item_2/text = "Это название первого айтема. Как тут все устроенно я хз вообще! Вот и думаю что делать!"
 item_2/icon = ExtResource("6_jy12o")
-item_3/text = ""
-script = SubResource("GDScript_3g2l0")
 
 [node name="центр" type="PanelContainer" parent="NinePatchRect/HBoxContainer"]
 custom_minimum_size = Vector2(596, 960)

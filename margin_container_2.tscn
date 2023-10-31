@@ -1,0 +1,181 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsi6ntyg1rgbx"]
+
+[ext_resource type="Theme" uid="uid://b4p6hghiq2a4y" path="res://GUI_settings/MarginContainer.tres" id="1_74lrg"]
+[ext_resource type="Texture2D" uid="uid://j0plblx7by55" path="res://PNG/шит.png" id="2_cdr5b"]
+[ext_resource type="Texture2D" uid="uid://7djh2p88hipm" path="res://PNG/серый.png" id="3_wl0fo"]
+
+[sub_resource type="GDScript" id="GDScript_67jl1"]
+script/source = "extends MarginContainer
+var id: int
+#var name: String
+var ico: String
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+func _on_container_mouse_entered():
+	print(\"NameMarg: \", name)
+	pass # Replace with function body.
+
+
+func _on_container_mouse_exited():
+	print(\"NameMarg Exit: \", name)
+	pass # Replace with function body.
+
+
+func _on_container_gui_input(event):
+	if Input.is_action_pressed(\"LMB\"):
+		$PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/Label.text = \"Print \\n text \\n Here!\"
+		print(\"NameMarg: \", name)
+	pass # Replace with function body.
+"
+
+[sub_resource type="Theme" id="Theme_vw2ek"]
+MarginContainer/constants/margin_bottom = 11
+MarginContainer/constants/margin_left = 11
+MarginContainer/constants/margin_right = 55
+MarginContainer/constants/margin_top = 11
+
+[sub_resource type="Theme" id="Theme_6vhot"]
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+
+[node name="MarginContainer" type="MarginContainer"]
+clip_contents = true
+theme = ExtResource("1_74lrg")
+script = SubResource("GDScript_67jl1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(0.890196, 1, 0.188235, 1)
+custom_minimum_size = Vector2(580, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=Red][h2][highlight][table][tr][td] Сила [/td][td] 125 [/td][/tr][tr][td] Ловкость [/td][td] 321 [/td][/tr][/table][/highlight][/h2][/color]
+
+[img width=50, height=50]PNG/черный.png[/img]
+[img]PNG/черный.png[/img]
+
+
+[size=13pt]
+[u]шит[/u] Как [url=][img]PNG/черный.png[/img]123[/url]
+	обьем щита aasd asd asdasd asd asda  adasddas
+	множетель урона
+генератор
+	скорость выроботки
+	кол-во выроботка
+батарейки
+	макс кол-во энергии
+	множетель разряда энергии
+двигатель
+	скорость тангажа
+	скорость крена
+	ускорение и тормажение
+оружие
+[/size]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_74lrg")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_cdr5b")
+expand_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("1_74lrg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = SubResource("Theme_vw2ek")
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Item Name "
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(10, 160)
+layout_mode = 2
+theme = SubResource("Theme_6vhot")
+
+[node name="ItemList" type="ItemList" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+visible = false
+layout_mode = 2
+select_mode = 1
+allow_reselect = true
+allow_rmb_select = true
+max_text_lines = 2
+text_overrun_behavior = 0
+item_count = 3
+item_0/text = "str"
+item_0/icon = ExtResource("3_wl0fo")
+item_1/text = "agil"
+item_1/icon = ExtResource("3_wl0fo")
+item_2/text = "heal"
+item_2/icon = ExtResource("3_wl0fo")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+focus_mode = 2
+bbcode_enabled = true
+text = "[color=Red][h2][highlight][table][tr][td] Сила [/td][td] 125 [/td][/tr][tr][td] Ловкость [/td][td] 321 [/td][/tr][/table][/highlight][/h2][/color]
+
+[img width=50, height=50]PNG/черный.png[/img]
+[img]PNG/черный.png[/img]
+
+
+[size=13pt]
+[u]шит[/u] Как [url=][img]PNG/черный.png[/img]123[/url]
+	обьем щита aasd asd asdasd asd asda  adasddas
+	множетель урона
+генератор
+	скорость выроботки
+	кол-во выроботка
+батарейки
+	макс кол-во энергии
+	множетель разряда энергии
+двигатель
+	скорость тангажа
+	скорость крена
+	ускорение и тормажение
+оружие
+[/size]"
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="Container" type="Container" parent="."]
+visible = false
+layout_mode = 2
+
+[connection signal="gui_input" from="Container" to="." method="_on_container_gui_input"]
+[connection signal="mouse_entered" from="Container" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Container" to="." method="_on_container_mouse_exited"]
