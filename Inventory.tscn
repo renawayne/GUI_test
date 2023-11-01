@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://i6xk82vycyj2"]
+[gd_scene load_steps=11 format=3 uid="uid://i6xk82vycyj2"]
 
 [ext_resource type="Texture2D" uid="uid://dasditftdbgk1" path="res://PNG/капли.png" id="1_07nfo"]
 [ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="1_26ewg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://but4hcxsce4hu" path="res://PNG/рамка.png" id="5_yetet"]
 [ext_resource type="Texture2D" uid="uid://sp8x20dxe7li" path="res://PNG/снежинка.png" id="6_jy12o"]
 [ext_resource type="PackedScene" uid="uid://bsi6ntyg1rgbx" path="res://margin_container_2.tscn" id="6_ym1wi"]
+[ext_resource type="Texture2D" uid="uid://cjr005234xjm" path="res://PNG/ship/PlayerShip.png" id="8_0ho30"]
 
 [sub_resource type="GDScript" id="GDScript_05yka"]
 script/source = "extends Control
@@ -21,16 +22,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	var y = $\"NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer\".focus_entered
-#	var x = $\"NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList\".get_selected_items()
-#	print(\"focus: \",y)
 	pass
 
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	print(\"index: \", index, \"\\nat_position: \", at_position, \"\\nmouse_button_index: \", mouse_button_index, \"\\n===========\")
 	var x = $\"NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList\".get_selected_items()
-	print(x)
+	print(\"selected_item\", x)
 	pass # Replace with function body.
 "
 
@@ -157,6 +155,9 @@ layout_mode = 2
 [node name="центр" type="MarginContainer" parent="NinePatchRect/HBoxContainer/центр/VBoxContainer"]
 layout_mode = 2
 
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/HBoxContainer/центр/VBoxContainer/центр"]
+layout_mode = 2
+
 [node name="низ" type="MarginContainer" parent="NinePatchRect/HBoxContainer/центр/VBoxContainer"]
 layout_mode = 2
 
@@ -165,5 +166,74 @@ custom_minimum_size = Vector2(596, 960)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/HBoxContainer/право"]
+layout_mode = 2
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect"]
+layout_mode = 2
+offset_right = 596.0
+offset_bottom = 960.0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="Panel" type="Panel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel/Panel"]
+texture = ExtResource("8_0ho30")
+centered = false
+
+[node name="Panel2" type="Panel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2"]
+clip_contents = true
+custom_minimum_size = Vector2(586, 760)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -293.0
+offset_top = -760.0
+offset_right = 293.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+
+[node name="PlayerInfo" type="RichTextLabel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/PanelContainer"]
+custom_minimum_size = Vector2(0, 760)
+layout_mode = 2
+size_flags_vertical = 0
+focus_mode = 2
+bbcode_enabled = true
+scroll_active = false
+context_menu_enabled = true
+selection_enabled = true
 
 [connection signal="item_clicked" from="NinePatchRect/HBoxContainer/лево/Container/MarginContainer/ItemList" to="." method="_on_item_list_item_clicked"]

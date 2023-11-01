@@ -66,28 +66,15 @@ size_flags_horizontal = 4
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=Red][h2][highlight][table][tr][td] Сила [/td][td] 125 [/td][/tr][tr][td] Ловкость [/td][td] 321 [/td][/tr][/table][/highlight][/h2][/color]
-
-[img width=50, height=50]PNG/черный.png[/img]
-[img]PNG/черный.png[/img]
-
-
-[size=13pt]
-[u]шит[/u] Как [url=][img]PNG/черный.png[/img]123[/url]
-	обьем щита aasd asd asdasd asd asda  adasddas
-	множетель урона
-генератор
-	скорость выроботки
-	кол-во выроботка
-батарейки
-	макс кол-во энергии
-	множетель разряда энергии
-двигатель
-	скорость тангажа
-	скорость крена
-	ускорение и тормажение
-оружие
-[/size]"
+text = "[color=#FF0000]H[/color][color=#D4002A]e[/color][color=#AA0055]l[/color][color=#7F007F]l[/color][color=#5500AA]o[/color] [color=#0000FF]w[/color][color=#2A00D4]o[/color][color=#5500AA]r[/color][color=#7F007F]l[/color][color=#AA0055]d[/color][color=#D4002A]![/color]
+Largest companies by market cap — US Stock Market  
+[b]Apple : 2037 Billion[/b]
+[b]Microsoft : 1624 Billion[/b]
+[b]Amazon : 1611 Billion[/b]
+[b]Google : 1058 Billion[/b]
+[b]Alibaba : 826 Billion[/b]
+[b]This data is as of 21 Sep 2020.[/b]  
+654[sup]21[/sup]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 visible = false
