@@ -164,19 +164,18 @@ var all_shop_item = {
 			\"ii_ship\": true}},
 }
 
-var test = \"pipiska\"
-
-
-
+# Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	pass
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed(\"plus_cont\"):
 		additem()
-	if Input.is_action_just_pressed(\"pizda\"):
-		random_items()
+		print(items_list)
 	pass
+
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	print(\"index: \", index, \"\\nat_position: \", at_position, \"\\nmouse_button_index: \", mouse_button_index, \"\\n===========\")
@@ -185,27 +184,13 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 	pass
 
 func additem():
-	var  new_item = ITEM_CONTAINER.instantiate() #создаем новый айтем в магазине
-	vbox_cont.add_child(new_item) #Добавляется айтем в список айтемов магазина
-	items_list.push_back(new_item) #добавляем айтем сонтейнер в список где все созданные айтемы
-#	new_item.curren_item = all_shop_item[items_list.size()-1] #Добавляем в переменную 
-	new_item.edit_text(all_shop_item[items_list.size()-1])
-#	new_item.edit_text(all_shop_item[0]) 
+	var  new_item = ITEM_CONTAINER.instantiate()
+	vbox_cont.add_child(new_item)
+	items_list.push_back(new_item)
+	new_item.curren_item = all_shop_item[items_list.size()-1]
+	new_item.edit_text(all_shop_item[0]) 
+	
 	pass
-
-func random_items():
-	for i in items_list:
-		i.edit_text(all_shop_item[randi_range(0, all_shop_item.size()-1)])
-	pass
-
-
-
-
-func vasya(event):
-#	print(event)
-#	if Input.is_action_pressed(\"LMB\"):
-	print(\"Select item: \", self.name, \" | name: \", name, \" | event: \", event)
-	pass # Replace with function body.
 "
 
 [node name="Inventory" type="Control"]
@@ -362,5 +347,3 @@ bbcode_enabled = true
 scroll_active = false
 context_menu_enabled = true
 selection_enabled = true
-
-[connection signal="gui_input" from="NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer/item_container" to="." method="_on_item_container_gui_input"]

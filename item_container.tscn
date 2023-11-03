@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsi6ntyg1rgbx"]
+
+[ext_resource type="Theme" uid="uid://b4p6hghiq2a4y" path="res://GUI_settings/MarginContainer.tres" id="1_74lrg"]
+
+[sub_resource type="GDScript" id="GDScript_67jl1"]
+script/source = "extends MarginContainer
+@onready var text2 = $PanelContainer/RichTextLabel.text
+var item_rare  = {
+	0: \"[color=#808080]Обычный[/color]\",
+	1: \"[color=#16CF16]Необычный[/color]\",
+	2: \"[color=#1306CC]Редкий[/color]\",
+	3: \"[color=#8000FF]Эпический[/color]\",
+	4: \"[color=#FF6600]Легендарный[/color]\",
+	5: \"[color=#FFD700]Мифический[/color]\",
+	6: \"[color=#FF0000]Б[/color][color=#FF7F00]о[/color][color=#FFFF00]ж[/color][color=#7FFF00]е[/color][color=#00FF00]с[/color][color=#00FF7F]т[/color][color=#00FEFF]в[/color][color=#007FFF]е[/color][color=#0000FF]н[/color][color=#7F00FF]н[/color][color=#FF00FE]ы[/color][color=#FF007F]й[/color]\"
+}
+var item_stats  = {\"hp_max\": \"Максимум HP\", \"hp_reg\": \"Регенерация HP\", \"energy\": \"Энергия\", \"hameleon\": \"Система 'Хамелеон'\", \"ii_ship\": \"ИИ коробля\"}
+var item_stat_install = {true:  \"Установлен\", false: \"Не установлен\"}
+var curren_item
+@onready var inv = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
+
+var bb
+func _ready():
+#	print(inv.test)
+	print(curren_item)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if bb == 387:
+		print(\"PEDIC!!!!!!!!!!\")
+	pass
+
+func edit_text(new_text):
+	$PanelContainer/RichTextLabel.text = str(new_text)
+	pass
+
+func _on_rich_text_label_gui_input(event):
+#	print(event)
+	if event is InputEventMouseButton:
+#		print(event.button_index)
+		if event:
+			print(event)
+			bb = event.button_mask
+#		print(event.double_click)
+#			inv.vasya(event)
+	pass # Replace with function body.
+"
+
+[node name="item_container" type="MarginContainer"]
+clip_contents = true
+theme = ExtResource("1_74lrg")
+script = SubResource("GDScript_67jl1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(0.890196, 1, 0.188235, 1)
+custom_minimum_size = Vector2(580, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2
+focus_mode = 2
+bbcode_enabled = true
+text = "[color=#FF0000]H[/color][color=#D4002A]e[/color][color=#AA0055]l[/color][color=#7F007F]l[/color][color=#5500AA]o[/color] [color=#0000FF]w[/color][color=#2A00D4]o[/color][color=#5500AA]r[/color][color=#7F007F]l[/color][color=#AA0055]d[/color][color=#D4002A]![/color]"
+selection_enabled = true
+
+[connection signal="gui_input" from="PanelContainer/RichTextLabel" to="." method="_on_rich_text_label_gui_input"]
