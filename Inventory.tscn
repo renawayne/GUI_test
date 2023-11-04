@@ -6,7 +6,6 @@
 
 [sub_resource type="GDScript" id="GDScript_05yka"]
 script/source = "extends Control
-
 var items_list: Array = []
 var ITEM_CONTAINER = preload(\"res://item_container.tscn\")
 @onready var vbox_cont = $\"NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer\"
@@ -14,7 +13,7 @@ var ITEM_CONTAINER = preload(\"res://item_container.tscn\")
 var item_stats: Array = []
 var all_shop_item = {
 	0: {
-		\"visible\": true,
+		\"visible\": false,
 		\"name\": \"Название предмета\",
 		\"ico\": \"res://PNG/item/шит2.png\",
 		\"discription\": \"Описание предмета\",
@@ -168,16 +167,18 @@ var all_shop_item = {
 			\"ii_ship\": true}},
 }
 
+var player_stat = {}
 
 func _ready():
-	add_in_shop_list(true,\"pipka\",\"/PNG/серый.png\",\"pipiska eb tvou mat`\", 6, 666666, {\"pipiska\": 100500, \"siski\": 500100})
+	add_in_shop_list(true,\"pipka\",\"res://PNG/снежинка.png\",\"pipiska eb tvou mat`\", 6, 666666, {\"pipiska\": -100500, \"siski\": -500100})
 	item_stats_parser()
 	
 	pass
 
 func _process(_delta):
 	if Input.is_action_just_pressed(\"plus_cont\"):
-		add_item_in_shop()
+#		add_item_in_shop()
+		temp_add()
 	if Input.is_action_just_pressed(\"pizda\"):
 #		item_stats_parser()
 		random_items()
@@ -208,6 +209,11 @@ func item_stats_parser():
 			else:
 				item_stats.append(x)
 	print(\"Stats: \", item_stats)
+
+func temp_add():
+	for i in all_shop_item:
+		add_item_in_shop()
+	pass
 
 func add_item_in_shop():
 	var  new_item = ITEM_CONTAINER.instantiate() #создаем новый айтем в магазине
@@ -245,10 +251,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -900.0
-offset_top = -480.0
-offset_right = 900.0
-offset_bottom = 480.0
+offset_left = -920.0
+offset_top = -500.0
+offset_right = 920.0
+offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_26ewg")

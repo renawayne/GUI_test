@@ -13,13 +13,16 @@ var item_rare  = {
 	4: \"[color=#FF6600]Легендарный[/color]\",
 	5: \"[color=#FFD700]Мифический[/color]\",
 	6: \"[color=#FF0000]Б[/color][color=#FF7F00]о[/color][color=#FFFF00]ж[/color][color=#7FFF00]е[/color][color=#00FF00]с[/color][color=#00FF7F]т[/color][color=#00FEFF]в[/color][color=#007FFF]е[/color][color=#0000FF]н[/color][color=#7F00FF]н[/color][color=#FF00FE]ы[/color][color=#FF007F]й[/color]\"}
-var item_stats  = {\"hp_max\": \"Максимум HP: \", \"hp_reg\": \"Регенерация HP: \", \"energy\": \"Энергия: \", \"hameleon\": \"Система 'Хамелеон':  \", \"ii_ship\": \"ИИ коробля: \", \"hp_max2\": \"TEST\", \"hp_reg3\": \"TEST\", \"hp_max4\": \"TEST\", \"hp_reg5\": \"TEST\", \"hp_max6\": \"TEST\", \"hp_reg7\": \"TEST\", \"hp_max8\": \"TEST\", \"hp_reg9\": \"TEST\", \"hp_max11\": \"TEST\", \"hp_reg22\": \"TEST\", \"hp_max33\": \"TEST\", \"hp_reg44\": \"TEST\", \"hp_max55\": \"TEST\", \"hp_reg66\": \"TEST\"}
-var item_stat_install = {true:  \"Установлен\", false: \"Не установлен\"}
+var item_stats  = {\"hp_max\": \"Максимум HP: \", \"hp_reg\": \"Регенерация HP: \", \"energy\": \"Энергия: \", \"hameleon\": \"'Хамелеон'\", \"ii_ship\": \"ИИ коробля\"}
+#var item_stats  = {\"hp_max\": \"Максимум HP: \", \"hp_reg\": \"Регенерация HP: \", \"energy\": \"Энергия: \", \"hameleon\": \"'Хамелеон'\", \"ii_ship\": \"ИИ коробля\", \"hp_max2\": \"TEST\", \"hp_reg3\": \"TEST\", \"hp_max4\": \"TEST\", \"hp_reg5\": \"TEST\", \"hp_max6\": \"TEST\", \"hp_reg7\": \"TEST\", \"hp_max8\": \"TEST\", \"hp_reg9\": \"TEST\", \"hp_max11\": \"TEST\", \"hp_reg22\": \"TEST\", \"hp_max33\": \"TEST\", \"hp_reg44\": \"TEST\", \"hp_max55\": \"TEST\", \"hp_reg66\": \"TEST\"}
+#var item_stat_install = {true:  \"Установлен\", false: \"Не установлен\"}
 var curren_item #Принимает значения предмета
 var item_bbcode:String #Отредактированное значение для вывода
 #@onready var inv = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
 
 func _ready():
+	
+	
 #	print(inv.test)
 #	print(curren_item)
 	pass # Replace with function body.
@@ -35,9 +38,14 @@ func edit_bbcode():
 	item_bbcode = item_bbcode + \"Редкость: \" + item_rare[curren_item.rare] + \"\\nХарактеристики:[ul bullet=⁍]\"
 	var stat_temp: String
 	for i in curren_item[\"stats\"]:
-		stat_temp = stat_temp + item_stats[i]
+		if i in item_stats:
+			stat_temp = stat_temp + item_stats[i]
+		else:
+			stat_temp = stat_temp + \"[color=red]нет названия модуля[/color]\"
+			push_warning(\"Нет название характеристики. Name: \",curren_item[\"name\"],\" | stat: \", i)
 		if curren_item[\"stats\"][i] is bool:
-			stat_temp = stat_temp + \"Будет установлен!\\n\"
+			stat_temp = \"Будет установлен модуль: \" + item_stats[i] +  \"\\n\"
+#			stat_temp = stat_temp + \"Будет установлен!\\n\"
 		elif curren_item[\"stats\"][i] is int:
 			stat_temp = stat_temp + str(curren_item[\"stats\"][i]) + \"\\n\"
 		else:
@@ -46,6 +54,10 @@ func edit_bbcode():
 	item_bbcode = item_bbcode + \"[/ul][p align=right]price: [color=gold]\" + str(curren_item[\"price\"]) + \"[/color] gold [/p]\"
 #	print(item_bbcode)
 	$PanelContainer/RichTextLabel.text = str(item_bbcode)
+	if curren_item[\"visible\"]:
+		pass
+	else:
+		$\".\".visible = false
 func test_edit_text(new_text):
 #	$PanelContainer/RichTextLabel.text = str(new_text)
 #	$PanelContainer/RichTextLabel.append_text('[url={\"data\"=\"hi\"}]hi[/url]')
