@@ -21,38 +21,24 @@ var all_shop_item = {
 		\"rare\": 0,
 		\"price\": 100,
 		\"stats\": {
-			\"hp_reg\": 1,
-			\"hp_max\": 2,
-			\"energy\": 3}},
+			\"hp_reg\": 0,
+			\"hp_max\": 0,
+			\"energy\": 0}},
 	1: {
 		\"visible\": true,
 		\"name\": \"ЗДА\",
-		\"ico\": \"res://PNG/item/пи.png\",
+		\"ico\": \"/PNG/item/пи.png\",
 		\"discription\": \"ЗДА (Защита Данных Автономная). \\n Система защиты данных коробля. Используется для сохранения данных корабля в случае смерти экипажа.\",
 		\"rare\": 6,
 		\"price\": 100,
 		\"stats\": {
 			\"hp_max\": 99999,
 			\"hp_reg\": 100,
-			\"hp_max2\": 99999,
-			\"hp_reg3\": 100,
-			\"hp_max4\": 99999,
-			\"hp_reg5\": 100,
-			\"hp_max6\": 99999,
-			\"hp_reg7\": 100,
-			\"hp_max8\": 99999,
-			\"hp_reg9\": 100,
-			\"hp_max11\": 99999,
-			\"hp_reg22\": 100,
-			\"hp_max33\": 99999,
-			\"hp_reg44\": 100,
-			\"hp_max55\": 99999,
-			\"hp_reg66\": 100,
 			\"energy\": 99999}},
 	2: {
 		\"visible\": true,
 		\"name\": \"Батарейка первого поколения\",
-		\"ico\": \"res://PNG/item/батарейка3.png\",
+		\"ico\": \"/PNG/item/батарейка3.png\",
 		\"discription\": \"Батарейка первого поколения. Изобретена в 2*** году. \\n Увеличивает вместимость аккумуляторов.\",
 		\"rare\": 1,
 		\"price\": 105,
@@ -63,18 +49,18 @@ var all_shop_item = {
 	3: {
 		\"visible\": true,
 		\"name\": \"Хамелеон\",
-		\"ico\": \"res://PNG/item/призма.png\",
+		\"ico\": \"/PNG/item/призма.png\",
 		\"discription\": \"Система 'Хамелеон', которая изменяет окрас коробля.\",
 		\"rare\": 2,
 		\"price\": 205,
 		\"stats\": {
-			\"hameleon\": true,
+			\"hameleon\": 100,
 			\"hp_reg\": 2,
 			\"energy\": 100}},
 	4: {
 		\"visible\": true,
 		\"name\": \"Модуль МК3\",
-		\"ico\": \"res://PNG/item/модуль.png\",
+		\"ico\": \"/PNG/item/модуль.png\",
 		\"discription\": \"Модуль МК3 улучшает большенство параметров коробля.\",
 		\"rare\": 3,
 		\"price\": 332,
@@ -85,7 +71,7 @@ var all_shop_item = {
 	5: {
 		\"visible\": true,
 		\"name\": \"Шит четвертой версии.\",
-		\"ico\": \"res://PNG/item/шит2.png\",
+		\"ico\": \"/PNG/item/шит2.png\",
 		\"discription\": \"Шит четвертой версии способен впитывать больше урона\",
 		\"rare\": 4,
 		\"price\": 423,
@@ -96,7 +82,7 @@ var all_shop_item = {
 	6: {
 		\"visible\": true,
 		\"name\": \"ИИ коробля\",
-		\"ico\": \"res://PNG/item/робот.png\",
+		\"ico\": \"/PNG/item/робот.png\",
 		\"discription\": \"ИИ коробля делает много чего. Читайте документацию)\",
 		\"rare\": 5,
 		\"price\": 727,
@@ -105,7 +91,7 @@ var all_shop_item = {
 	7: {
 		\"visible\": true,
 		\"name\": \"ЗДА\",
-		\"ico\": \"res://PNG/item/пи.png\",
+		\"ico\": \"/PNG/item/пи.png\",
 		\"discription\": \"ЗДА (Защита Данных Автономная). \\n Система защиты данных коробля. Используется для сохранения данных корабля в случае смерти экипажа.\",
 		\"rare\": 6,
 		\"price\": 100,
@@ -116,7 +102,7 @@ var all_shop_item = {
 	8: {
 		\"visible\": true,
 		\"name\": \"Батарейка первого поколения\",
-		\"ico\": \"res://PNG/item/батарейка3.png\",
+		\"ico\": \"/PNG/item/батарейка3.png\",
 		\"discription\": \"Батарейка первого поколения. Изобретена в 2*** году. \\n Увеличивает вместимость аккумуляторов.\",
 		\"rare\": 1,
 		\"price\": 105,
@@ -127,7 +113,7 @@ var all_shop_item = {
 	9: {
 		\"visible\": true,
 		\"name\": \"Хамелеон\",
-		\"ico\": \"res://PNG/item/призма.png\",
+		\"ico\": \"/PNG/item/призма.png\",
 		\"discription\": \"Система 'Хамелеон', которая изменяет окрас коробля.\",
 		\"rare\": 2,
 		\"price\": 205,
@@ -138,7 +124,7 @@ var all_shop_item = {
 	10: {
 		\"visible\": true,
 		\"name\": \"Модуль МК3\",
-		\"ico\": \"res://PNG/item/модуль.png\",
+		\"ico\": \"/PNG/item/модуль.png\",
 		\"discription\": \"Модуль МК3 улучшает большенство параметров коробля.\",
 		\"rare\": 3,
 		\"price\": 332,
@@ -149,7 +135,7 @@ var all_shop_item = {
 	11: {
 		\"visible\": true,
 		\"name\": \"Шит четвертой версии.\",
-		\"ico\": \"res://PNG/item/шит2.png\",
+		\"ico\": \"/PNG/item/шит2.png\",
 		\"discription\": \"Шит четвертой версии способен впитывать больше урона\",
 		\"rare\": 4,
 		\"price\": 423,
@@ -160,7 +146,7 @@ var all_shop_item = {
 	12: {
 		\"visible\": true,
 		\"name\": \"ИИ коробля\",
-		\"ico\": \"res://PNG/item/робот.png\",
+		\"ico\": \"/PNG/item/робот.png\",
 		\"discription\": \"ИИ коробля делает много чего. Читайте документацию)\",
 		\"rare\": 5,
 		\"price\": 727,
@@ -195,8 +181,8 @@ func add_in_shop_list(visible: bool, name: String, ico: String, discription: Str
 	data[\"price\"] =  price
 	data[\"stats\"] = stats
 	all_shop_item[id] = data
-	print(\"all_shop_item: \",all_shop_item.size())
-#	print(all_shop_item[id])
+	print(all_shop_item.size())
+	print(all_shop_item[id])
 	
 	pass
 
@@ -213,8 +199,7 @@ func add_item_in_shop():
 	var  new_item = ITEM_CONTAINER.instantiate() #создаем новый айтем в магазине
 	vbox_cont.add_child(new_item) #Добавляется айтем в список айтемов магазина. Отобразить в GUI.
 	items_list.push_back(new_item) #добавляем созданный айтем контейнер в список где все созданные айтем контейнеры. Для дальнейшего использования.
-	new_item.curren_item = all_shop_item[items_list.size()-1] #Отправляем данные айтема в скрипт самого айтем контейнера.
-	new_item.edit_bbcode()
+	new_item.curren_item = all_shop_item[items_list.size()-1] #Отправляем данные айтема в скрипт самого айтем контейнера. 
 #	new_item.test_edit_text(all_shop_item[items_list.size()-1]) # Изменить текст айтема, через вункцию test_edit_text()
 	pass
 
