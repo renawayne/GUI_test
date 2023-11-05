@@ -1,25 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://i6xk82vycyj2"]
+[gd_scene load_steps=7 format=3 uid="uid://i6xk82vycyj2"]
 
 [ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="1_26ewg"]
 [ext_resource type="Texture2D" uid="uid://c2qkl108c05ci" path="res://PNG/фон инфо инвернтарь.png" id="4_a7c0u"]
 [ext_resource type="Texture2D" uid="uid://cy3hibunp30v7" path="res://PNG/item/призма.png" id="5_fl28y"]
-[ext_resource type="Script" path="res://GUI_settings/test_text.gd" id="6_el3by"]
 [ext_resource type="PackedScene" uid="uid://bsi6ntyg1rgbx" path="res://item_container.tscn" id="6_ym1wi"]
 [ext_resource type="Texture2D" uid="uid://cjr005234xjm" path="res://PNG/ship/PlayerShip.png" id="8_0ho30"]
 
 [sub_resource type="GDScript" id="GDScript_05yka"]
 script/source = "extends Control
-#\\\\\\\\\\\\\\\\var///////
+var items_list: Array = []
+var ITEM_CONTAINER = preload(\"res://item_container.tscn\")
 @onready var vbox_cont = $\"NinePatchRect/HBoxContainer/лево/ScrollContainer/VBoxContainer\"
-@onready var img_frame = {
-	1: %mod1,
-	2: %mod2,
-	3: %mod3,
-	4: %mod4,
-	5: %mod5,
-	6: %mod6}
-@onready var ITEM_CONTAINER = preload(\"res://item_container.tscn\")
-
+var img2 = [
+	preload(\"res://PNG/item/батарейка2.png\"),
+	preload(\"res://PNG/item/батарейка3.png\"),
+	preload(\"res://PNG/item/батарейка.png\"),
+	preload(\"res://PNG/item/колба.png\"),
+	preload(\"res://PNG/item/колбы.png\"),
+	preload(\"res://PNG/item/кошелек.png\"),
+	preload(\"res://PNG/item/кредитка.png\"),
+	preload(\"res://PNG/item/модуль.png\"),
+	preload(\"res://PNG/item/пи.png\"),
+	preload(\"res://PNG/item/призма.png\"),
+	preload(\"res://PNG/item/робот.png\"),
+	preload(\"res://PNG/item/спутник.png\"),
+	preload(\"res://PNG/item/шестеренки.png\"),
+	preload(\"res://PNG/item/шит2.png\"),
+	preload(\"res://PNG/item/шит.png\")]
 var img1 = {
 	1: preload(\"res://PNG/item/батарейка2.png\"),
 	2: preload(\"res://PNG/item/батарейка3.png\"),
@@ -36,22 +43,15 @@ var img1 = {
 	13: preload(\"res://PNG/item/шестеренки.png\"),
 	14: preload(\"res://PNG/item/шит2.png\"),
 	15: preload(\"res://PNG/item/шит.png\")}
-var img2: Array = [
-	preload(\"res://PNG/item/батарейка2.png\"),
-	preload(\"res://PNG/item/батарейка3.png\"),
-	preload(\"res://PNG/item/батарейка.png\"),
-	preload(\"res://PNG/item/колба.png\"),
-	preload(\"res://PNG/item/колбы.png\"),
-	preload(\"res://PNG/item/кошелек.png\"),
-	preload(\"res://PNG/item/кредитка.png\"),
-	preload(\"res://PNG/item/модуль.png\"),
-	preload(\"res://PNG/item/пи.png\"),
-	preload(\"res://PNG/item/призма.png\"),
-	preload(\"res://PNG/item/робот.png\"),
-	preload(\"res://PNG/item/спутник.png\"),
-	preload(\"res://PNG/item/шестеренки.png\"),
-	preload(\"res://PNG/item/шит2.png\"),
-	preload(\"res://PNG/item/шит.png\")]
+var img_frame = {
+	1: %mod1,
+	2: %mod2,
+	3: %mod3,
+	4: %mod4,
+	5: %mod5,
+	6: %mod6}
+
+var item_stats: Array = []
 var all_shop_item = {
 	0: {
 		\"visible\": false,
@@ -205,34 +205,28 @@ var all_shop_item = {
 		\"rare\": 5,
 		\"price\": 727,
 		\"stats\": {
-			\"ii_ship\": true}},}
-var item_stats_name  = Glob.item_stats_name
-var player_stat = {
-	
+			\"ii_ship\": true}},
 }
 
+var player_stat = {}
 
-var item_stats: Array = []
-var items_list: Array = []
-
-#\\\\\\\\\\\\\\\\function///////
 func _ready():
 	add_in_shop_list(true,\"pipka\",\"res://PNG/снежинка.png\",\"pipiska eb tvou mat`\", 6, 666666, {\"pipiska\": -100500, \"siski\": -500100})
 	item_stats_parser()
-	temp_add()
 	
 	pass
 
 func _process(_delta):
 	if Input.is_action_just_pressed(\"plus_cont\"):
 #		add_item_in_shop()
-#		temp_add()
-		pass
+		temp_add()
 	if Input.is_action_just_pressed(\"pizda\"):
-		random_img_in_frame()
+		%Sprite2D3.set_texture(img2[1])
+#		random_img_in_frame()
 #		item_stats_parser()
 #		random_items()
-		pass
+		
+		print(\"PIZDA\")
 
 func add_in_shop_list(visible: bool, name: String, ico: String, discription: String, rare: int, price: int, stats: Dictionary):
 	var id = all_shop_item.size()
@@ -281,12 +275,9 @@ func random_items(): # Изменить айтемы в магазине на р
 
 func random_img_in_frame():
 	for i in img_frame:
-		img_frame[i].set_texture(img1[randi_range(1, 15)])
+		img_frame[i].set_texture(img2[randi_range(1, img2.size())])
 	pass
 "
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_kkwnk"]
-script = ExtResource("6_el3by")
 
 [node name="Inventory" type="Control"]
 clip_contents = true
@@ -369,7 +360,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="право" type="PanelContainer" parent="NinePatchRect/HBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.203922)
 custom_minimum_size = Vector2(596, 960)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -383,7 +373,6 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect"]
-clip_contents = true
 layout_mode = 2
 offset_right = 596.0
 offset_bottom = 960.0
@@ -457,110 +446,31 @@ scale = Vector2(0.122, 0.122)
 texture = ExtResource("5_fl28y")
 
 [node name="Panel2" type="Panel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer"]
-clip_contents = true
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 11.08
+size_flags_horizontal = 4
 
-[node name="TabContainer" type="TabContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2"]
+[node name="PanelContainer" type="PanelContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2"]
 clip_contents = true
-layout_mode = 2
-offset_right = 596.0
-offset_bottom = 756.0
+custom_minimum_size = Vector2(586, 760)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -293.0
+offset_top = -760.0
+offset_right = 293.0
 grow_horizontal = 2
-pivot_offset = Vector2(304, 144)
-all_tabs_in_front = true
-use_hidden_tabs_for_min_size = true
-
-[node name="Статы" type="PanelContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer"]
-layout_mode = 2
+grow_vertical = 0
 size_flags_vertical = 0
 
-[node name="PlayerInfo" type="RichTextLabel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer/Статы"]
-custom_minimum_size = Vector2(0, 725)
+[node name="PlayerInfo" type="RichTextLabel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/PanelContainer"]
+custom_minimum_size = Vector2(0, 760)
 layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 2
 bbcode_enabled = true
-text = "Корпус
-	макс_прочность
-шит
-	обьем щита
-	множетель урона
-генератор
-	скорость выроботки
-	кол-во выроботка
-батарейки
-	макс кол-во энергии
-	множетель разряда энергии
-двигатель
-	скорость тангажа
-	скорость крена
-	ускорение и тормажение
-
-
-"
-scroll_active = false
-context_menu_enabled = true
-custom_effects = [SubResource("RichTextEffect_kkwnk")]
-selection_enabled = true
-
-[node name="Модули" type="PanelContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="PlayerInfo" type="RichTextLabel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer/Модули"]
-custom_minimum_size = Vector2(0, 725)
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 2
-bbcode_enabled = true
-text = "Корпус
-	макс_прочность
-шит
-	обьем щита
-	множетель урона
-генератор
-	скорость выроботки
-	кол-во выроботка
-батарейки
-	макс кол-во энергии
-	множетель разряда энергии
-двигатель
-	скорость тангажа
-	скорость крена
-	ускорение и тормажение"
-scroll_active = false
-context_menu_enabled = true
-selection_enabled = true
-
-[node name="Оружие" type="PanelContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="PlayerInfo" type="RichTextLabel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer/Оружие"]
-custom_minimum_size = Vector2(0, 725)
-layout_mode = 2
-size_flags_vertical = 0
-focus_mode = 2
-bbcode_enabled = true
-text = "Корпус
-	макс_прочность
-шит
-	обьем щита
-	множетель урона
-генератор
-	скорость выроботки
-	кол-во выроботка
-батарейки
-	макс кол-во энергии
-	множетель разряда энергии
-двигатель
-	скорость тангажа
-	скорость крена
-	ускорение и тормажение"
 scroll_active = false
 context_menu_enabled = true
 selection_enabled = true

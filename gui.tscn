@@ -2,29 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://i6xk82vycyj2" path="res://Inventory.tscn" id="1_7m7pn"]
 [ext_resource type="Script" path="res://gui.gd" id="1_du4b8"]
+[ext_resource type="Script" path="res://GUI_settings/test_text.gd" id="3_bl4ir"]
 
-[sub_resource type="SystemFont" id="SystemFont_dnw6f"]
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_1ffyh"]
-line_spacing = 0.0
-font = SubResource("SystemFont_dnw6f")
-font_size = 21
-outline_size = 3
-outline_color = Color(1, 0.513726, 1, 1)
+[sub_resource type="RichTextEffect" id="RichTextEffect_wsu2c"]
+script = ExtResource("3_bl4ir")
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_du4b8")
 
 [node name="Inventory" parent="." instance=ExtResource("1_7m7pn")]
 
-[node name="windowsLable" type="Label" parent="."]
+[node name="windowsLable" type="RichTextLabel" parent="."]
 offset_left = 17.0
-offset_top = 19.0
-offset_right = 226.0
-offset_bottom = 139.0
-label_settings = SubResource("LabelSettings_1ffyh")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 23.0
+offset_right = 1904.0
+offset_bottom = 143.0
+bbcode_enabled = true
+custom_effects = [SubResource("RichTextEffect_wsu2c")]

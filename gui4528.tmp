@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://detw6ua44swu0"]
+
+[ext_resource type="PackedScene" uid="uid://i6xk82vycyj2" path="res://Inventory.tscn" id="1_7m7pn"]
+[ext_resource type="Script" path="res://gui.gd" id="1_du4b8"]
+[ext_resource type="Script" path="res://GUI_settings/test_text.gd" id="3_bl4ir"]
+[ext_resource type="Texture2D" uid="uid://os76dk6j8vba" path="res://PNG/item/батарейка2.png" id="4_54iyw"]
+[ext_resource type="Texture2D" uid="uid://6mh43ffde6gv" path="res://PNG/item/пи.png" id="5_p7lpj"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wsu2c"]
+script = ExtResource("3_bl4ir")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ohoh3"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 800, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+turbulence_noise_strength = 20.0
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 2
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_du4b8")
+
+[node name="Inventory" parent="." instance=ExtResource("1_7m7pn")]
+
+[node name="windowsLable" type="RichTextLabel" parent="."]
+offset_left = 17.0
+offset_top = 23.0
+offset_right = 1904.0
+offset_bottom = 143.0
+bbcode_enabled = true
+custom_effects = [SubResource("RichTextEffect_wsu2c")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(952, 320)
+sub_emitter = NodePath("GPUParticles2D")
+process_material = SubResource("ParticleProcessMaterial_ohoh3")
+texture = ExtResource("4_54iyw")
+lifetime = 5.0
+visibility_rect = Rect2(-100.625, -100, 200, 200)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="GPUParticles2D"]
+emitting = false
+texture = ExtResource("5_p7lpj")

@@ -13,8 +13,8 @@ var item_rare  = {
 	4: \"[color=#FF6600]Легендарный[/color]\",
 	5: \"[color=#FFD700]Мифический[/color]\",
 	6: \"[color=#FF0000]Б[/color][color=#FF7F00]о[/color][color=#FFFF00]ж[/color][color=#7FFF00]е[/color][color=#00FF00]с[/color][color=#00FF7F]т[/color][color=#00FEFF]в[/color][color=#007FFF]е[/color][color=#0000FF]н[/color][color=#7F00FF]н[/color][color=#FF00FE]ы[/color][color=#FF007F]й[/color]\"}
-var item_stats  = {\"hp_max\": \"Максимум HP: \", \"hp_reg\": \"Регенерация HP: \", \"energy\": \"Энергия: \", \"hameleon\": \"'Хамелеон'\", \"ii_ship\": \"ИИ коробля\"}
-#var item_stats  = {\"hp_max\": \"Максимум HP: \", \"hp_reg\": \"Регенерация HP: \", \"energy\": \"Энергия: \", \"hameleon\": \"'Хамелеон'\", \"ii_ship\": \"ИИ коробля\", \"hp_max2\": \"TEST\", \"hp_reg3\": \"TEST\", \"hp_max4\": \"TEST\", \"hp_reg5\": \"TEST\", \"hp_max6\": \"TEST\", \"hp_reg7\": \"TEST\", \"hp_max8\": \"TEST\", \"hp_reg9\": \"TEST\", \"hp_max11\": \"TEST\", \"hp_reg22\": \"TEST\", \"hp_max33\": \"TEST\", \"hp_reg44\": \"TEST\", \"hp_max55\": \"TEST\", \"hp_reg66\": \"TEST\"}
+#var item_stats_name  = {\"hp_max\": \"Максимум HP: \", \"hp_reg\": \"Регенерация HP: \", \"energy\": \"Энергия: \", \"hameleon\": \"'Хамелеон'\", \"ii_ship\": \"ИИ коробля\"}
+var item_stats_name  = Glob.item_stats_name
 #var item_stat_install = {true:  \"Установлен\", false: \"Не установлен\"}
 var curren_item #Принимает значения предмета
 var item_bbcode:String #Отредактированное значение для вывода
@@ -38,14 +38,16 @@ func edit_bbcode():
 	item_bbcode = item_bbcode + \"Редкость: \" + item_rare[curren_item.rare] + \"\\nХарактеристики:[ul bullet=⁍]\"
 	var stat_temp: String
 	for i in curren_item[\"stats\"]:
-		if i in item_stats:
-			stat_temp = stat_temp + item_stats[i]
+		if i in item_stats_name:
+			stat_temp = stat_temp + item_stats_name[i]
 		else:
 			stat_temp = stat_temp + \"[color=red]нет названия модуля[/color]\"
 			push_warning(\"Нет название характеристики. Name: \",curren_item[\"name\"],\" | stat: \", i)
 		if curren_item[\"stats\"][i] is bool:
-			stat_temp = \"Будет установлен модуль: \" + item_stats[i] +  \"\\n\"
-#			stat_temp = stat_temp + \"Будет установлен!\\n\"
+			if i in item_stats_name:
+				stat_temp = \"Будет установлен модуль: \" + item_stats_name[i] +  \"\\n\"
+			else:
+				stat_temp = \"Будет установлен модуль: \" + \"[color=red]нет названия модуля[/color]\" +  \"\\n\"
 		elif curren_item[\"stats\"][i] is int:
 			stat_temp = stat_temp + str(curren_item[\"stats\"][i]) + \"\\n\"
 		else:

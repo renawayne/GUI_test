@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://i6xk82vycyj2"]
+[gd_scene load_steps=8 format=3 uid="uid://i6xk82vycyj2"]
 
 [ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="1_26ewg"]
 [ext_resource type="Texture2D" uid="uid://c2qkl108c05ci" path="res://PNG/фон инфо инвернтарь.png" id="4_a7c0u"]
 [ext_resource type="Texture2D" uid="uid://cy3hibunp30v7" path="res://PNG/item/призма.png" id="5_fl28y"]
-[ext_resource type="Script" path="res://GUI_settings/test_text.gd" id="6_el3by"]
+[ext_resource type="RichTextEffect" uid="uid://cw32v15nvibxc" path="res://GUI_settings/sphere_text.tres" id="6_m6kq5"]
 [ext_resource type="PackedScene" uid="uid://bsi6ntyg1rgbx" path="res://item_container.tscn" id="6_ym1wi"]
 [ext_resource type="Texture2D" uid="uid://cjr005234xjm" path="res://PNG/ship/PlayerShip.png" id="8_0ho30"]
 
@@ -285,9 +285,6 @@ func random_img_in_frame():
 	pass
 "
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_kkwnk"]
-script = ExtResource("6_el3by")
-
 [node name="Inventory" type="Control"]
 clip_contents = true
 custom_minimum_size = Vector2(1840, 1000)
@@ -482,7 +479,10 @@ layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 2
 bbcode_enabled = true
-text = "Корпус
+text = "
+[tornado radius=20.0 freq=0.0 connected=1]Очень длинный текст[/tornado]
+
+Корпус
 	макс_прочность
 шит
 	обьем щита
@@ -496,13 +496,10 @@ text = "Корпус
 двигатель
 	скорость тангажа
 	скорость крена
-	ускорение и тормажение
-
-
-"
+	ускорение и тормажение"
 scroll_active = false
 context_menu_enabled = true
-custom_effects = [SubResource("RichTextEffect_kkwnk")]
+custom_effects = [ExtResource("6_m6kq5")]
 selection_enabled = true
 
 [node name="Модули" type="PanelContainer" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel2/TabContainer"]
