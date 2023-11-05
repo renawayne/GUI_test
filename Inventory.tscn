@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://i6xk82vycyj2"]
+[gd_scene load_steps=6 format=3 uid="uid://i6xk82vycyj2"]
 
 [ext_resource type="Texture2D" uid="uid://b04lrya73budk" path="res://PNG/фон.png" id="1_26ewg"]
+[ext_resource type="Texture2D" uid="uid://c2qkl108c05ci" path="res://PNG/фон инфо инвернтарь.png" id="4_a7c0u"]
 [ext_resource type="PackedScene" uid="uid://bsi6ntyg1rgbx" path="res://item_container.tscn" id="6_ym1wi"]
 [ext_resource type="Texture2D" uid="uid://cjr005234xjm" path="res://PNG/ship/PlayerShip.png" id="8_0ho30"]
 
@@ -333,7 +334,7 @@ alignment = 1
 
 [node name="Panel" type="Panel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(596, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
@@ -353,8 +354,13 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel/Panel"]
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel"]
+position = Vector2(202, 4)
 texture = ExtResource("8_0ho30")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer/Panel"]
+texture = ExtResource("4_a7c0u")
 centered = false
 
 [node name="Panel2" type="Panel" parent="NinePatchRect/HBoxContainer/право/NinePatchRect/VBoxContainer"]
